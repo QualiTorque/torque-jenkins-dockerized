@@ -72,7 +72,7 @@ pipeline {
                     sh &quot;&quot;&quot;
                     rm -r .git &amp; rm .gitignore &amp; rm azure-pipelines.yml &amp; rm -r test-output &amp; rm -r test
                     mkdir drop
-                    tar --warning=no-file-changed -czvf drop/promotions-manager-api.${BUILD_NUMBER}.tar.gz --exclude=./drop .
+                    tar --warning=no-file-changed -czvf drop/promotions-manager-api.${BUILD_NUMBER}.tar.gz --exclude=./drop --exclude ./.git .
                     tar --warning=no-file-changed -czvf promotions-manager-api.master.tar.gz drop/promotions-manager-api.${BUILD_NUMBER}.tar.gz
                     aws s3 cp promotions-manager-api.master.tar.gz s3://%BUCKET_NAME%/promotions-manager/latest/
                     &quot;&quot;&quot;
